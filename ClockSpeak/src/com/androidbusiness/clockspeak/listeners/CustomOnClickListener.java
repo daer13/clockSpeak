@@ -1,11 +1,10 @@
 package com.androidbusiness.clockspeak.listeners;
 
-import com.androidbusiness.clockspeak.R;
-import com.androidbusiness.clockspeak.R.id;
-
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.androidbusiness.clockspeak.R;
 
 public class CustomOnClickListener implements OnClickListener {
 	private static final String TAG = CustomOnClickListener.class.getSimpleName();
