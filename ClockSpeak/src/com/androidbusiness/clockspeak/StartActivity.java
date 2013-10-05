@@ -1,14 +1,17 @@
 package com.androidbusiness.clockspeak;
 
 
-import com.androidbusiness.clockspeak.listeners.CustomOnClickListener;
+import java.text.DateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class StartActivity extends Activity {
 
@@ -25,10 +28,10 @@ public class StartActivity extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp.setAdapter(adapter);
 		
-		Button btn_start = (Button)findViewById(R.id.btn_start);
-		btn_start.setOnClickListener(new CustomOnClickListener());
-		Button btn_close = (Button)findViewById(R.id.btn_stop);
-		btn_close.setOnClickListener(new CustomOnClickListener());
+//		Button btn_start = (Button)findViewById(R.id.btn_start);
+//		btn_start.setOnClickListener(new CustomOnClickListener());
+//		Button btn_close = (Button)findViewById(R.id.btn_stop);
+//		btn_close.setOnClickListener(new CustomOnClickListener());
 	}
 
 	@Override
@@ -38,5 +41,19 @@ public class StartActivity extends Activity {
 		return true;
 	}
 
+	public void bottonActionStart(View view){
+		Log.d(TAG, "Start botton Init");
+		TextView textClock = (TextView)findViewById(R.id.txt_clock);
+		Date date = new Date();
+		textClock.setText(DateFormat.getDateTimeInstance().format(date));
+		Log.d(TAG, "Start botton End");
+	}
 	
+	public void bottonActionStop(View view){
+		Log.d(TAG, "Stop botton Init");
+		
+		
+		
+		Log.d(TAG, "Stop botton Stop");
+	}
 }

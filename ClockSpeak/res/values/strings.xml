@@ -13,7 +13,7 @@
 	</string-array>
 	<string name="btn_start">Start</string>
 	<string name="btn_stop">Stop</string>
-	
+	<string name="txt_clock">CLOCK</string>
 	
 
 </resources>
