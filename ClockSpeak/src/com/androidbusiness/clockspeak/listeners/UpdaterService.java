@@ -127,6 +127,7 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 //					TextView textClock = (TextView)findViewById(R.id.txt_clock);
 //					textClock.setText(sdf.format(date));
 					Date date = new Date();
+					Log.d(TAG, "Repeticion: "+getMinutes()+" MIN");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Log.d(TAG, "HORA -> "+sdf.format(date));
 					speakOut(sdf.format(date));
