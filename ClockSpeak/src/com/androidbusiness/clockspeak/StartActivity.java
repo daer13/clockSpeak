@@ -1,22 +1,19 @@
 package com.androidbusiness.clockspeak;
 
 
-import java.text.DateFormat;
-import java.util.Date;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class StartActivity extends Activity {
 
 	private static final String TAG = StartActivity.class.getSimpleName();
-	
+	private StartApplication application;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +40,14 @@ public class StartActivity extends Activity {
 
 	public void bottonActionStart(View view){
 		Log.d(TAG, "Start botton Init");
-		TextView textClock = (TextView)findViewById(R.id.txt_clock);
-		Date date = new Date();
-		textClock.setText(DateFormat.getDateTimeInstance().format(date));
+		//startActivity(new Intent("com.androidbusiness.clockspeak.listeners.StartApplication"));
+		startService(new Intent("com.androidbusiness.clockspeak.listeners.UpdaterService"));
 		Log.d(TAG, "Start botton End");
 	}
 	
 	public void bottonActionStop(View view){
 		Log.d(TAG, "Stop botton Init");
-		
-		
-		
+//		stopService(new Intent("com.androidbusiness.clockspeak.listeners.UpdaterService"));
 		Log.d(TAG, "Stop botton Stop");
 	}
 }
