@@ -22,14 +22,14 @@ public class StartApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "onCreated");
-		startService(new Intent(this, UpdaterService.class));
+		//startService(new Intent(this, UpdaterService.class));
 	}
 	
 	@Override
 	public void onTerminate() {
 		super.onTerminate();
 		Log.i(TAG, "onTerminated");
-		stopService(new Intent(this, UpdaterService.class));
+		//stopService(new Intent(this, UpdaterService.class));
 	}
 
 }

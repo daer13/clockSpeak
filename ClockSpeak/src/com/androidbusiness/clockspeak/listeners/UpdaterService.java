@@ -2,21 +2,24 @@ package com.androidbusiness.clockspeak.listeners;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import com.androidbusiness.clockspeak.StartApplication;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
-public class UpdaterService extends Service {
+public class UpdaterService extends Service implements TextToSpeech.OnInitListener {
 
 	private final String TAG = UpdaterService.class.getSimpleName();
 	
 	static final int DELAY = 60000;
 	private boolean runFlag = false;
 	private Updater updater;
+	private TextToSpeech tts;
 	
 	private StartApplication application;
 	
@@ -38,11 +41,18 @@ public class UpdaterService extends Service {
 		super.onCreate();
 		application = (StartApplication) getApplication();
 		updater = new Updater();
+		tts = new TextToSpeech(this, this);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		
+		// Don't forget to shutdown tts!
+		if (tts != null) {
+			tts.stop();
+			tts.shutdown();
+		}
 		
 		runFlag = false;
 		application.setServiceRunningFlag(false);
@@ -66,8 +76,33 @@ public class UpdaterService extends Service {
 		return START_STICKY;
 	}
 
-	
+	private void setLanguageToSpeak() {
+		int result = tts.setLanguage(Locale.getDefault());
+		if (result == TextToSpeech.LANG_MISSING_DATA
+				|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
+			Log.e("TTS", "This Language is not supported");
+		} else {
+			speakOut("Prueba");
+		}
+	}
 
+	private void speakOut(String text) {
+		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	}
+	
+	private void setMVSpanish(){
+		Locale.setDefault(new Locale("es", "ES"));
+	}
+
+	@Override
+	public void onInit(int status) {
+		if (status == TextToSpeech.SUCCESS) {
+			this.setMVSpanish();
+			this.setLanguageToSpeak();
+		} else {
+			Log.e("TTS", "Initilization Failed!");
+		}
+	}
 	
 	private class Updater extends Thread{
 		public Updater(){
@@ -83,6 +118,7 @@ public class UpdaterService extends Service {
 					Date date = new Date();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					Log.d(TAG, "HORA -> "+sdf.format(date));
+					speakOut(sdf.format(date));
 //					TextView textClock = (TextView)findViewById(R.id.txt_clock);
 //					textClock.setText(sdf.format(date));
 					
