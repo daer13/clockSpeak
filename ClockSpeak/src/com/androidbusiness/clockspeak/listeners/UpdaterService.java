@@ -4,10 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.androidbusiness.clockspeak.StartActivity;
 import com.androidbusiness.clockspeak.StartApplication;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -16,7 +18,9 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 
 	private final String TAG = UpdaterService.class.getSimpleName();
 	
-	static final int DELAY = 60000;
+	public int minutes = 1;
+	// Is one minute
+	static final int MILLISECONDS = 60000;
 	private boolean runFlag = false;
 	private Updater updater;
 	private TextToSpeech tts;
@@ -30,8 +34,15 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
+		Bundle extras = intent.getExtras(); 
+		if(extras == null)
+		    Log.d("Service","null");
+		else{
+			minutes = (Integer)extras.get(StartActivity.TIMER);
+			updater = new Updater();
+			tts = new TextToSpeech(this, this);
+		}
 	}
 
 
@@ -40,8 +51,7 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 	public void onCreate() {
 		super.onCreate();
 		application = (StartApplication) getApplication();
-		updater = new Updater();
-		tts = new TextToSpeech(this, this);
+		
 	}
 
 	@Override
@@ -116,18 +126,25 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 				Log.d(TAG, "UpdaterThread running");
 				try{
 					Date date = new Date();
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Log.d(TAG, "HORA -> "+sdf.format(date));
 					speakOut(sdf.format(date));
 //					TextView textClock = (TextView)findViewById(R.id.txt_clock);
 //					textClock.setText(sdf.format(date));
-					
-					Thread.sleep(DELAY); 
+					Thread.sleep(MILLISECONDS*getMinutes()); 
 				}catch(InterruptedException e){
 					updaterService.runFlag = false;
 					application.setServiceRunningFlag(true);
 				}
 			}
+		}
+	}
+	
+	private int getMinutes(){
+		try{
+			return minutes>=0?minutes:1;
+		}catch(Exception e){
+			return 1;
 		}
 	}
 }

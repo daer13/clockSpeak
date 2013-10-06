@@ -35,12 +35,4 @@
         android:text="@string/btn_stop" 
         android:onClick="bottonActionStop"/>
     
-    	<TextView
-        android:id="@+id/txt_clock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_clock"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    
 </LinearLayout>

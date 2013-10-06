@@ -1,8 +1,6 @@
 package com.androidbusiness.clockspeak;
 
 
-import com.androidbusiness.clockspeak.listeners.UpdaterService;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +10,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.androidbusiness.clockspeak.listeners.UpdaterService;
+
 public class StartActivity extends Activity {
 
+	public static final String TIMER = "timer";
 	private static final String TAG = StartActivity.class.getSimpleName();
 	
 	@Override
@@ -43,7 +44,11 @@ public class StartActivity extends Activity {
 		Log.d(TAG, "Start botton Init");
 		//startActivity(new Intent("com.androidbusiness.clockspeak.listeners.StartApplication"));
 		//startService(new Intent("com.androidbusiness.clockspeak.listeners.UpdaterService"));
-		startService(new Intent(this, UpdaterService.class));
+		Intent serviceIntent = new Intent(this,UpdaterService.class); 
+		Spinner spinner = (Spinner)findViewById(R.id.list_minutes);
+		String selectedItem = (String)spinner.getSelectedItem();
+		serviceIntent.putExtra(TIMER, Integer.valueOf(selectedItem));
+		startService(serviceIntent);
 		Log.d(TAG, "Start botton End");
 	}
 	

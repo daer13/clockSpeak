@@ -6,6 +6,7 @@
     <string name="mensaje">Minutos</string>
 	<string-array name="list_minutes">
 	        <item>1</item>
+	        <item>5</item>
 	        <item>10</item>
 	        <item>20</item>
 	        <item>30</item>

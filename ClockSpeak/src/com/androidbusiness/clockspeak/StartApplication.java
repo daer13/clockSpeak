@@ -1,9 +1,6 @@
 package com.androidbusiness.clockspeak;
 
-import com.androidbusiness.clockspeak.listeners.UpdaterService;
-
 import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
 
 public class StartApplication extends Application {
