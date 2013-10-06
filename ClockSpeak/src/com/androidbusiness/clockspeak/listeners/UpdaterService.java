@@ -1,6 +1,7 @@
 package com.androidbusiness.clockspeak.listeners;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -91,8 +92,6 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 		if (result == TextToSpeech.LANG_MISSING_DATA
 				|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
 			Log.e("TTS", "This Language is not supported");
-		} else {
-			speakOut("Prueba");
 		}
 	}
 
@@ -125,12 +124,15 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 			while (updaterService.runFlag) {
 				Log.d(TAG, "UpdaterThread running");
 				try{
+//					TextView textClock = (TextView)findViewById(R.id.txt_clock);
+//					textClock.setText(sdf.format(date));
 					Date date = new Date();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Log.d(TAG, "HORA -> "+sdf.format(date));
 					speakOut(sdf.format(date));
-//					TextView textClock = (TextView)findViewById(R.id.txt_clock);
-//					textClock.setText(sdf.format(date));
+					
+					
+					
 					Thread.sleep(MILLISECONDS*getMinutes()); 
 				}catch(InterruptedException e){
 					updaterService.runFlag = false;
@@ -147,5 +149,6 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 			return 1;
 		}
 	}
+	
 }
 
