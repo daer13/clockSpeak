@@ -57,5 +57,8 @@ public class StartActivity extends Activity {
 //		stopService(new Intent("com.androidbusiness.clockspeak.listeners.UpdaterService"));
 		stopService(new Intent(this, UpdaterService.class));
 		Log.d(TAG, "Stop botton Stop");
+		finish();
 	}
+
+	
 }
