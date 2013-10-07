@@ -1,12 +1,8 @@
 package com.androidbusiness.clockspeak.listeners;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import com.androidbusiness.clockspeak.StartActivity;
-import com.androidbusiness.clockspeak.StartApplication;
 
 import android.app.Service;
 import android.content.Intent;
@@ -14,6 +10,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+
+import com.androidbusiness.clockspeak.StartActivity;
+import com.androidbusiness.clockspeak.StartApplication;
 
 public class UpdaterService extends Service implements TextToSpeech.OnInitListener {
 
