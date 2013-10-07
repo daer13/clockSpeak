@@ -42,7 +42,6 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 		else{
 			minutes = (Integer)extras.get(StartActivity.TIMER);
 			updater = new Updater();
-			tts = new TextToSpeech(this, this);
 		}
 	}
 
@@ -52,7 +51,7 @@ public class UpdaterService extends Service implements TextToSpeech.OnInitListen
 	public void onCreate() {
 		super.onCreate();
 		application = (StartApplication) getApplication();
-		
+		tts = new TextToSpeech(this, this);
 	}
 
 	@Override
