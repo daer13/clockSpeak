@@ -9,13 +9,16 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.androidbusiness.clockspeak.listeners.UpdaterService;
+
 
 public class StartActivity extends Activity {
 
 	public static final String TIMER = "timer";
 	private static final String TAG = StartActivity.class.getSimpleName();
+	private ToggleButton tgButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,19 @@ public class StartActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.start, menu);
 		return true;
+	}
+	
+
+	
+	public void toggleClicked(View v) {
+		Log.i("TAG","toggle");
+		tgButton = (ToggleButton) findViewById(R.id.btn_toggle);
+		if (tgButton.isChecked()){
+			bottonActionStart(v);
+		}else{
+			bottonActionStop(v);
+		}
+		
 	}
 
 	public void bottonActionStart(View view){

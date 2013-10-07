@@ -21,18 +21,16 @@
         android:drawSelectorOnTop="true"
         android:prompt="@string/mensaje" />
 
-    <Button
-        android:id="@+id/btn_start"
+    <ToggleButton
+        android:id="@+id/btn_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_start" 
-        android:onClick="bottonActionStart"/>
+        android:text="@string/btn_Toggle" 
+        android:textOn="@string/btn_start"
+        android:textOff="@string/btn_stop"
+        android:onClick="toggleClicked"
+        />
 
-    <Button
-        android:id="@+id/btn_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_stop" 
-        android:onClick="bottonActionStop"/>
+ 
     
 </LinearLayout>

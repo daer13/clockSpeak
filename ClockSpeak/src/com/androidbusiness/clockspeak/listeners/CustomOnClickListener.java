@@ -1,16 +1,14 @@
 package com.androidbusiness.clockspeak.listeners;
 
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-
-import com.androidbusiness.clockspeak.R;
 
 public class CustomOnClickListener implements OnClickListener {
 	private static final String TAG = CustomOnClickListener.class.getSimpleName();
 
 	@Override
 	public void onClick(View boton) {
+		/*
 		Log.d(TAG, "click en "+boton.getId());
 		switch (boton.getId()) {
 		case R.id.btn_start:
@@ -27,7 +25,7 @@ public class CustomOnClickListener implements OnClickListener {
 		default:
 			break;
 		}
-		
+		*/
 	}
 
 }
